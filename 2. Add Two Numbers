@@ -29,7 +29,17 @@ class Solution(object):
 
         l3 = ListNode(num3 % 10)
         num3 = num3 // 10
-
+        insert = l3
+        
+        while num3>0:
+            temp = ListNode(num3%10)
+            insert.next = temp;
+            insert = insert.next;
+            num3 = num3//10;
+        return l3
+            
+        
+        """
         while num3 > 0:
             value = num3 % 10
             temp = ListNode(value)
@@ -38,5 +48,6 @@ class Solution(object):
                 insert = insert.next
             insert.next = temp
             num3 = num3 // 10
-        return l3   
+        return l3 
+        """
             
