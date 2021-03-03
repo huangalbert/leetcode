@@ -20,6 +20,12 @@ def mul():
     return l
 ```
 
+<div style='font-size:20px'>
+  <p>思路總結：了解閉包(closure)與 lambda 的關係。</p>
+  <p>關鍵字：closure、capture variable、lambda。</p>
+  <p>refer: https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-4-lambda-function-%E8%88%87-closure-%E4%B9%8B%E8%AC%8E-7a385a35e1d8</p>
+</div>
+
 
 
 ## Q2:
