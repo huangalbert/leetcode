@@ -299,3 +299,65 @@ def test2(A, K):
     return -1 if sum(result)%2==1 else sum(result)
 ```
 
+
+
+## Q10
+
+依照 input list 建立樹，'#' 代表 None，之後使用 pre-order traversal 輸出結果。
+
+```python
+strArr = ['5', '2', '6', '1', '9', '#', '8', '#', '#', '#', '#', '4', '#'] 
+	# ['5', '2', '1', '9', '6', '8', '4']
+strArr = ['4', '1', '5', '2', '#', '#', '#'] 
+	# ['4', '1', '2', '5']
+strArr = ['2', '6', '#'] 
+	# ['2', '6']
+strArr = ['2'] 
+	# ['2']
+strArr = [] 
+	# []
+
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+        
+class traversal(object):
+    def __init__(self):
+        self.result = []
+    
+    def pre_order(self, node):
+        if node.val:
+            self.result += node.val
+            self.pre_order(node.left)
+            self.pre_order(node.right)
+
+def ArrayChallenge(strArr):
+    node_temp = []    
+    # initial root
+    root = TreeNode(strArr.pop(0)) if strArr else TreeNode(None)
+    if root.val:
+        root.left = TreeNode(None)
+        root.right = TreeNode(None)
+        node_temp += [root.left, root.right]
+        
+    #bulid the tree
+    for s in strArr:
+        if node_temp:
+            node = node_temp.pop(0)
+        node.val = None if s == '#' else s
+        node.left = TreeNode(None)
+        node.right = TreeNode(None)
+        
+        if not s == '#':
+            node_temp += [node.left, node.right]
+    
+    # pre-order traversal
+    t = traversal()
+    t.pre_order(root)
+    
+    return t.result
+```
+
+>  思路總結：由於建樹的規則是依序 input list，所以沒辦法使用 recursion 去做（左邊 node 做完，要換右邊的 node 做，層層堆疊下必須要有上層的資訊可以），所以選擇以一個 list 紀錄依序紀錄 父node，如果node本身的 val 是 None ，則不會進入到 list 中
